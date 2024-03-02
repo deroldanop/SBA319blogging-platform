@@ -17,15 +17,7 @@ const PORT = process.env.PORT || 3500;
 await mongoose.connect(process.env.MONGO_URI);
 
 
-//////
-// app.get('/seed', async (req, res) => {
-//   try {
-//      await Users.create();
-//     res.json(users);
-//   } catch (err) {
-//     res.status(500).json({ message: err.message });
-//   }
-// });
+
 app.get('/', async (req, res) => {
   await Users.deleteMany({});
   await Users.create(users);
@@ -43,7 +35,7 @@ app.get('/', async (req, res) => {
 // });
 
 // POST a new user
-app.post('/seed', async (req, res) => {
+app.post('/post', async (req, res) => {
   const user = new User({
     username: req.body.username,
     email: req.body.email,
@@ -56,6 +48,22 @@ app.post('/seed', async (req, res) => {
   } catch (err) {
     res.status(400).json({ message: err.message });
   }
+});
+
+// DELETE routes
+app.delete('/users/:id', async (req, res) => {
+    await User.findByIdAndDelete(req.params.id);
+    res.json({ message: 'User deleted successfully' });
+});
+
+app.delete('/posts/:id', async (req, res) => {
+    await Post.findByIdAndDelete(req.params.id);
+    res.json({ message: 'Post deleted successfully' });
+});
+
+app.delete('/comments/:id', async (req, res) => {
+    await Comment.findByIdAndDelete(req.params.id);
+    res.json({ message: 'Comment deleted successfully' });
 });
 ///////
 
