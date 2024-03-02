@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser'
 // import Comment from './models/Comment.js';
-// import Post from './models/Post.js';
+//import  Post from './models/Post.mjs';
 import Users from './models/User.mjs';
 import users from './utilities/data.js';
 import User from './models/User.mjs';
