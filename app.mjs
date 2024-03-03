@@ -6,7 +6,7 @@ import bodyParser from 'body-parser'
 //import  Post from './models/Post.mjs';
 import Users from './models/User.mjs';
 import users from './utilities/data.js';
-import User from './models/User.mjs';
+import router from './routes/users.mjs';
 
 console.log(users)
 
@@ -18,7 +18,7 @@ await mongoose.connect(process.env.MONGO_URI);
 
 
 
-app.get('/', async (req, res) => {
+app.get('/seed', async (req, res) => {
   await Users.deleteMany({});
   await Users.create(users);
 
@@ -35,7 +35,7 @@ app.get('/', async (req, res) => {
 // });
 
 // POST a new user
-app.post('/post', async (req, res) => {
+app.post('/', async (req, res) => {
   const user = new User({
     username: req.body.username,
     email: req.body.email,

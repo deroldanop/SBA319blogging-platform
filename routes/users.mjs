@@ -1,6 +1,6 @@
-// import express from 'express';
-// import Users from './models/User.mjs';
-// const router = express.Router();
+import express from 'express';
+import Users from '../models/User.mjs';
+const router = express.Router();
 
 
 // // GET all users
@@ -30,4 +30,4 @@ router.post('/', async (req, res) => {
 
 
 
-module.exports = router;
+export default router;
